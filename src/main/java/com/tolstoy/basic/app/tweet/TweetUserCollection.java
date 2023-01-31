@@ -117,6 +117,20 @@ class TweetUserCollection implements ITweetUserCollection {
 	@JsonIgnore
 	@Override
 	public void addTweetUser( final ITweetUser tweetUser ) {
+		if ( tweetUser == null ) {
+			return;
+		}
+
+		long otherID = tweetUser.getID();
+		if ( otherID > 0 ) {
+			for ( ITweetUser existing : tweetUsers ) {
+				if ( existing.getID() == otherID ) {
+					existing.supplementFrom( tweetUser );
+					return;
+				}
+			}
+		}
+
 		tweetUsers.add( tweetUser );
 	}
 
