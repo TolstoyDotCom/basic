@@ -200,7 +200,7 @@ class Tweet implements ITweet {
 			sb.append( " " );
 		}
 
-		sb.append( "(" );
+		sb.append( " (" );
 		sb.append( getSupposedQuality() );
 
 		sb.append( "," );
@@ -211,6 +211,9 @@ class Tweet implements ITweet {
 
 		sb.append( "," );
 		sb.append( getAttribute( "replycount" ) );
+
+		sb.append( "," );
+		sb.append( getAttribute( "viewscount" ) );
 		sb.append( ")" );
 
 		sb.append( " " );
