@@ -118,6 +118,7 @@ class Tweet implements ITweet {
 			new EntityAttributeDescriptor( "username", "" ),
 			new EntityAttributeDescriptor( "verifiedText", "" ),
 			new EntityAttributeDescriptor( "videothumburl", "" ),
+			new EntityAttributeDescriptor( "viewscount", "0" ),
 			new EntityAttributeDescriptor( "youblock", "" ),
 			new EntityAttributeDescriptor( "youfollow", "" ),
 			new EntityAttributeDescriptor( "errors", "" )
@@ -314,6 +315,7 @@ class Tweet implements ITweet {
 		ret.put( "retweetcount", Utils.trimDefault( getAttribute( "retweetcount" ), "-1" ) );
 		ret.put( "favoritecount", Utils.trimDefault( getAttribute( "favoritecount" ), "-1" ) );
 		ret.put( "replycount", Utils.trimDefault( getAttribute( "replycount" ), "-1" ) );
+		ret.put( "viewscount", Utils.trimDefault( getAttribute( "viewscount" ), "-1" ) );
 		ret.put( "tweettext", getTweettextPlain( 0 ) );
 
 		return ret;
@@ -435,6 +437,7 @@ class Tweet implements ITweet {
 		list.add( "favs=" + ( Utils.isEmpty( getAttribute( "favoritecount" ) ) ? "0" : getAttribute( "favoritecount" ) ) );
 		list.add( "repls=" + ( Utils.isEmpty( getAttribute( "replycount" ) ) ? "0" : getAttribute( "replycount" ) ) );
 		list.add( "rts=" + ( Utils.isEmpty( getAttribute( "retweetcount" ) ) ? "0" : getAttribute( "retweetcount" ) ) );
+		list.add( "views=" + ( Utils.isEmpty( getAttribute( "viewscount" ) ) ? "0" : getAttribute( "viewscount" ) ) );
 
 		if ( !Utils.isEmpty( getAttribute( "permalinkpath" ) ) ) {
 			if ( getAttribute( "permalinkpath" ).indexOf( "/" ) > -1 ) {

@@ -49,6 +49,7 @@ import com.tolstoy.basic.app.utils.StringList;
  * <li>replycount</li>
  * <li>retweetcount</li>
  * <li>favoritecount</li>
+ * <li>viewscount</li>
  * <li>suggestionjson</li>
  * <li>videothumburl</li>
  * <li>hasparenttweet</li>
