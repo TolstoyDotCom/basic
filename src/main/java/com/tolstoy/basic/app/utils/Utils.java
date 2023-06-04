@@ -456,6 +456,22 @@ public final class Utils {
 		}
 	}
 
+	/**
+	 * @todo complete
+	 */
+	public static boolean isJSON( String data ) throws Exception {
+		if ( data == null || data.length() < 1 ) {
+			return false;
+		}
+
+		data = data.trim();
+		if ( !( data.startsWith( "[" ) || data.startsWith( "{" ) ) ) {
+			return false;
+		}
+
+		return true;
+	}
+
 	public static void logException( Logger logger, String message, Exception e ) {
 		logger.error( message +
 						",\nmessage=" + StringUtils.substring( e.getMessage(), 0, EXCEPTION_MESSAGE_LEN ) +
