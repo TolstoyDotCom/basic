@@ -18,5 +18,7 @@ public interface IEntityAttributeDescriptor {
 	String getKeyAlias();
 	String getDefaultValue();
 	String getDescription();
+	String getGetter();
+	String getSetter();
 	EntityAttributeDescriptorType getType();
 }

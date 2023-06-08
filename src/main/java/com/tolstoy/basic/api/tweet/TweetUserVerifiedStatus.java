@@ -18,7 +18,8 @@ import org.apache.commons.lang3.StringUtils;
 public enum TweetUserVerifiedStatus {
 	UNKNOWN,
 	VERIFIED,
-	NOTVERIFIED;
+	NOTVERIFIED,
+	BLUE_VERIFIED;
 
 	public static TweetUserVerifiedStatus getMatching( final String verifiedStatus ) {
 		return StringUtils.containsIgnoreCase( verifiedStatus, "verified" ) ? VERIFIED : UNKNOWN;

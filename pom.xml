@@ -15,7 +15,7 @@
 
 	<groupId>com.tolstoy.basic</groupId>
 	<artifactId>basic</artifactId>
-	<version>0.0.9</version>
+	<version>0.0.11</version>
 	<packaging>jar</packaging>
 
 	<name>basic</name>
@@ -90,60 +90,15 @@
 			<version>2.7</version>
 		</dependency>
 		<dependency>
-			<groupId>com.browserup</groupId>
-			<artifactId>browserup-proxy-core</artifactId>
-			<version>2.1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>io.netty</groupId>
-			<artifactId>netty-codec-http</artifactId>
-			<version>4.1.77.Final</version>
-		</dependency>
-<!--
-		<dependency>
-			<groupId>io.netty</groupId>
-			<artifactId>netty-tcnative-boringssl-static</artifactId>
-			<version>2.0.20.Final</version>
-		</dependency>
--->
-		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20180813</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.github.cliftonlabs</groupId>
 			<artifactId>json-simple</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-
-<!--
-		<dependency>
-			<groupId>com.github.token-cjg</groupId>
-			<artifactId>JSErrorCollector</artifactId>
-			<version>-SNAPSHOT</version>
-		</dependency>
--->
-
-		<dependency>
-			<groupId>org.dizitart</groupId>
-			<artifactId>jbus</artifactId>
-			<version>1.1</version>
-		</dependency>
-<!--
-		<dependency>
-			<groupId>com.google.api-client</groupId>
-			<artifactId>google-api-client-appengine</artifactId>
-			<version>1.23.0</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.google.guava</groupId>
-					<artifactId>guava-jdk5</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
--->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-dbcp2</artifactId>
@@ -163,28 +118,6 @@
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>2.6</version>
-		</dependency>
-		<dependency>
-			<groupId>com.seaglasslookandfeel</groupId>
-			<artifactId>seaglasslookandfeel</artifactId>
-			<version>0.2.1</version>
-		</dependency>
-<!--
-		<dependency>
-			<groupId>com.github.arnabk</groupId>
-			<artifactId>pgslookandfeel</artifactId>
-			<version>1.1.4</version>
-		</dependency>
--->
-		<dependency>
-			<groupId>org.scijava</groupId>
-			<artifactId>scijava-common</artifactId>
-			<version>2.69.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.squareup.okhttp3</groupId>
-			<artifactId>okhttp</artifactId>
-			<version>3.10.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.kcthota</groupId>
@@ -210,6 +143,11 @@
 			<groupId>com.xk72</groupId>
 			<artifactId>pherialize</artifactId>
 			<version>1.2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>3.10.0</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

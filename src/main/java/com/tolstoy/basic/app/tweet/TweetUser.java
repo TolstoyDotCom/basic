@@ -50,15 +50,23 @@ class TweetUser implements ITweetUser {
 
 	static {
 		final EntityAttributeDescriptor[] entityAttributeDescriptors = {
-			new EntityAttributeDescriptor( "id", "0", EntityAttributeDescriptorType.PRIMARY_KEY ),
-			new EntityAttributeDescriptor( "handle", "placeholder_handle" ),
-			new EntityAttributeDescriptor( "displayName", "", EntityAttributeDescriptorType.SCALAR, "display_name" ),
-			new EntityAttributeDescriptor( "verifiedStatus", "UNKNOWN", EntityAttributeDescriptorType.SCALAR, "verified_status" ),
-			new EntityAttributeDescriptor( "avatarURL", "", EntityAttributeDescriptorType.SCALAR, "avatar_url" ),
-			new EntityAttributeDescriptor( "numTotalTweets", "0", EntityAttributeDescriptorType.SCALAR, "num_total_tweets" ),
-			new EntityAttributeDescriptor( "numFollowers", "0", EntityAttributeDescriptorType.SCALAR, "num_followers" ),
-			new EntityAttributeDescriptor( "numFollowing", "0", EntityAttributeDescriptorType.SCALAR, "num_following" ),
-			new EntityAttributeDescriptor( "errors", "" )
+			new EntityAttributeDescriptor( "id", "0", EntityAttributeDescriptorType.PRIMARY_KEY, "id", "", "getID", "setID" ),
+			new EntityAttributeDescriptor( "handle", "placeholder_handle", EntityAttributeDescriptorType.SCALAR, "handle", "", "getHandle", "setHandle" ),
+			new EntityAttributeDescriptor( "displayName", "", EntityAttributeDescriptorType.SCALAR, "display_name", "", "getDisplayName", "" ),
+			new EntityAttributeDescriptor( "verifiedStatus", "UNKNOWN", EntityAttributeDescriptorType.SCALAR, "verified_status", "", "getVerifiedStatus", "" ),
+			new EntityAttributeDescriptor( "avatarURL", "", EntityAttributeDescriptorType.SCALAR, "avatar_url", "", "getAvatarURL", "" ),
+			new EntityAttributeDescriptor( "numTotalTweets", "0", EntityAttributeDescriptorType.SCALAR, "num_total_tweets", "", "getNumTotalTweets", "" ),
+			new EntityAttributeDescriptor( "numFollowers", "0", EntityAttributeDescriptorType.SCALAR, "num_followers", "", "getNumFollowers", "" ),
+			new EntityAttributeDescriptor( "numFollowing", "0", EntityAttributeDescriptorType.SCALAR, "num_following", "", "getNumFollowing", "" ),
+			new EntityAttributeDescriptor( "errors", "" ),
+			new EntityAttributeDescriptor( "canDM", "", EntityAttributeDescriptorType.SCALAR, "can_dm" ),
+			new EntityAttributeDescriptor( "canMediaTag", "", EntityAttributeDescriptorType.SCALAR, "can_media_tag" ),
+			new EntityAttributeDescriptor( "advertiserAccountType", "", EntityAttributeDescriptorType.SCALAR, "advertiser_account_type" ),
+			new EntityAttributeDescriptor( "blueSubscriber", "", EntityAttributeDescriptorType.SCALAR, "ext_is_blue_verified" ),
+			new EntityAttributeDescriptor( "requireSomeConsent", "", EntityAttributeDescriptorType.SCALAR, "require_some_consent" ),
+			new EntityAttributeDescriptor( "hasGraduatedAccess", "", EntityAttributeDescriptorType.SCALAR, "has_graduated_access" ),
+			new EntityAttributeDescriptor( "superFollowEligible", "", EntityAttributeDescriptorType.SCALAR, "super_follow_eligible" ),
+			new EntityAttributeDescriptor( "withheldInCountries", "", EntityAttributeDescriptorType.SCALAR, "withheld_in_countries" ),
 		};
 
 		entityAttributeDescriptorSet = new EntityAttributeDescriptorSet( entityAttributeDescriptors );
@@ -267,13 +275,22 @@ class TweetUser implements ITweetUser {
 			this.setAttribute( "numFollowing", "" + other.getNumFollowing() );
 		}
 
+		for ( IEntityAttributeDescriptor descriptor : getAttributeDescriptorSet().getDescriptors() ) {
+			if ( Utils.isEmpty( descriptor.getGetter() ) ) {
+				String value = ObjectUtils.firstNonNull( other.getAttribute( descriptor.getKey() ),
+															other.getAttribute( descriptor.getKeyAlias() ),
+															descriptor.getDefaultValue() );
+				this.setAttribute( descriptor.getKey(), value );
+			}
+		}
+
 		return warnings;
 	}
 
 	@JsonIgnore
 	@Override
 	public String toDebugString( String indent ) {
-		List<String> list = new ArrayList<String>( 10 );
+		List<String> list = new ArrayList<String>( 20 );
 
 		list.add( getID() != 0 ? "id=" + getID() : "NO_ID" );
 
@@ -294,6 +311,12 @@ class TweetUser implements ITweetUser {
 		list.add( "ttls=" + getNumTotalTweets() );
 		list.add( "flwrs=" + getNumFollowers() );
 		list.add( "flwng=" + getNumFollowing() );
+
+		for ( IEntityAttributeDescriptor descriptor : getAttributeDescriptorSet().getDescriptors() ) {
+			if ( !Utils.isEmpty( getAttribute( descriptor.getKey() ) ) ) {
+				list.add( descriptor.getKey() + "=" + getAttribute( descriptor.getKey() ) );
+			}
+		}
 
 		return indent + StringUtils.join( list, ", " );
 	}

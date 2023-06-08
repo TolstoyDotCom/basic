@@ -26,19 +26,19 @@ import com.tolstoy.basic.api.tweet.EntityAttributeDescriptorType;
 public class EntityAttributeDescriptor implements IEntityAttributeDescriptor {
 	private static final Logger logger = LogManager.getLogger( EntityAttributeDescriptor.class );
 
-	private EntityAttributeDescriptorType type;
-	private String key, defaultValue, description, keyAlias;
+	private final EntityAttributeDescriptorType type;
+	private final String key, defaultValue, description, keyAlias, getter, setter;
 
 	public EntityAttributeDescriptor( String key, String defaultValue ) {
-		this( key, defaultValue, EntityAttributeDescriptorType.SCALAR, "", key );
+		this( key, defaultValue, EntityAttributeDescriptorType.SCALAR, "", key, "", "" );
 	}
 
 	public EntityAttributeDescriptor( String key, String defaultValue, EntityAttributeDescriptorType type ) {
-		this( key, defaultValue, type, key, "" );
+		this( key, defaultValue, type, key, "", "", "" );
 	}
 
 	public EntityAttributeDescriptor( String key, String defaultValue, EntityAttributeDescriptorType type, String keyAlias ) {
-		this( key, defaultValue, type, keyAlias, "" );
+		this( key, defaultValue, type, keyAlias, "", "", "" );
 	}
 
 	public EntityAttributeDescriptor( String key, String defaultValue, EntityAttributeDescriptorType type, String keyAlias, String description ) {
@@ -47,6 +47,18 @@ public class EntityAttributeDescriptor implements IEntityAttributeDescriptor {
 		this.type = type;
 		this.description = description;
 		this.keyAlias = keyAlias;
+		this.getter = "";
+		this.setter = "";
+	}
+
+	public EntityAttributeDescriptor( String key, String defaultValue, EntityAttributeDescriptorType type, String keyAlias, String description, String getter, String setter ) {
+		this.key = key;
+		this.defaultValue = defaultValue;
+		this.type = type;
+		this.description = description;
+		this.keyAlias = keyAlias;
+		this.getter = getter;
+		this.setter = setter;
 	}
 
 	public String getKey() {
@@ -63,6 +75,14 @@ public class EntityAttributeDescriptor implements IEntityAttributeDescriptor {
 
 	public String getDescription() {
 		return description;
+	}
+
+	public String getGetter() {
+		return getter;
+	}
+
+	public String getSetter() {
+		return setter;
 	}
 
 	public EntityAttributeDescriptorType getType() {
