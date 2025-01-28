@@ -242,6 +242,14 @@ public class StorageEmbeddedDerby implements IStorage {
 		}
 	}
 
+	public Connection getConnection() throws Exception {
+		if ( connectionPool == null ) {
+			throw new RuntimeException( "Not connected to the database" );
+		}
+
+		return connectionPool.getConnection();
+	}
+
 	protected IStorable readRecord( final ResultSet rs ) throws Exception {
 		final byte[] bytes = rs.getBytes( "payload" );
 		try {
@@ -307,6 +315,9 @@ public class StorageEmbeddedDerby implements IStorage {
 			if ( stmt != null ) {
 				stmt.close();
 			}
+			if ( connection != null ) {
+				connection.close();
+			}
 		}
 	}
 
@@ -320,14 +331,6 @@ public class StorageEmbeddedDerby implements IStorage {
 		else {
 			return "";
 		}
-	}
-
-	protected Connection getConnection() throws Exception {
-		if ( connectionPool == null ) {
-			throw new RuntimeException( "Not connected to the database" );
-		}
-
-		return connectionPool.getConnection();
 	}
 
 	protected Timestamp instantToTimestamp( final Instant inst ) {

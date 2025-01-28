@@ -14,6 +14,7 @@
 package com.tolstoy.basic.api.storage;
 
 import java.util.List;
+import java.sql.Connection;
 
 public interface IStorage {
 	void connect() throws Exception;
@@ -26,4 +27,6 @@ public interface IStorage {
 	List<IStorable> getRecords( final IStorageTable table, final String searchkey, final StorageOrdering ordering, final int max ) throws Exception;
 
 	void saveRecord( final IStorageTable table, final IStorable record ) throws Exception;
+
+	Connection getConnection() throws Exception;
 }
